@@ -1,6 +1,6 @@
 from flask import Flask, request, redirect
 import os
-import twilio.twiml
+# import twilio.twiml
  
 app = Flask(__name__)
  
@@ -17,16 +17,16 @@ def hello_monkey():
  
     for i in request.args:
         print i,'\t\t', request.args[i]
-
-    from_number = request.values.get('From', None)
-    if from_number in callers:
-        message = callers[from_number] + ", thanks for the message!"
-    else:
-        message = "Monkey, thanks for the message!"
+    return 'sdfsf'
+    # from_number = request.values.get('From', None)
+    # if from_number in callers:
+    #     message = callers[from_number] + ", thanks for the message!"
+    # else:
+    #     message = "Monkey, thanks for the message!"
  
-    resp = twilio.twiml.Response()
-    resp.message(message)
-    return str(resp)
+    # resp = twilio.twiml.Response()
+    # resp.message(message)
+    # return str(resp)
 
 port = int(os.environ.get('PORT', 5000))
 if __name__ == "__main__":
