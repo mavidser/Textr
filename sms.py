@@ -52,19 +52,7 @@ def crossdomain(origin=None, methods=None, headers=None,
   return decorator
 
 #------------------------------------------------------------------------------
-def send_text(data):
-    ACCOUNT_SID = "AC643827145bf34449eaed29541061cb61" 
-    AUTH_TOKEN = "d95e4350d5c7a08dd74ba98ae3f6b4cf" 
-       
-    client = TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN) 
-       
-    client.messages.create(
-        to="+12513339847", 
-        from_="+12513339847", 
-        body=data
-    )
-
-def send_text(data):
+def send_text(data,from_):
     ACCOUNT_SID = "AC643827145bf34449eaed29541061cb61" 
     AUTH_TOKEN = "d95e4350d5c7a08dd74ba98ae3f6b4cf" 
      
@@ -74,7 +62,7 @@ def send_text(data):
     for j in [data[i:i+n] for i in range(0, len(data), n)]:
         print j
         client.messages.create(
-            to="+919670663399", 
+            to=from_, 
             from_="+12513339847", 
             body=j
         )
@@ -128,6 +116,7 @@ def hello_monkey():
     for i in request.args:
         print i,'\t\t', request.args[i]
     body = request.args['Body']
+    from_ = request.args['From']
     
     try:
         if body.split()[0].lower() == 'directions' or body.split()[1].lower() == 'directions':
@@ -146,7 +135,7 @@ def hello_monkey():
 
         resp = twilio.twiml.Response()
         resp.message(message)
-        send_text(message)
+        send_text(message,from_)
         print str(resp)
         return str(resp)
     except Exception as e:
