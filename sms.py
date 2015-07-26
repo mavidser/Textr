@@ -4,6 +4,7 @@ from datetime import timedelta
 from functools import update_wrapper
 import os, urllib
 import twilio.twiml
+from twilio.rest import TwilioRestClient 
 import requests
 from directions import *
 
@@ -51,15 +52,34 @@ def crossdomain(origin=None, methods=None, headers=None,
   return decorator
 
 #------------------------------------------------------------------------------
+def send_text(data):
+    ACCOUNT_SID = "AC643827145bf34449eaed29541061cb61" 
+    AUTH_TOKEN = "d95e4350d5c7a08dd74ba98ae3f6b4cf" 
+       
+    client = TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN) 
+       
+    client.messages.create(
+        to="+12513339847", 
+        from_="+12513339847", 
+        body=data
+    )
 
+def send_text(data):
+    ACCOUNT_SID = "AC643827145bf34449eaed29541061cb61" 
+    AUTH_TOKEN = "d95e4350d5c7a08dd74ba98ae3f6b4cf" 
+     
+    client = TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN) 
+    
+    n=120
+    for j in [data[i:i+n] for i in range(0, len(data), n)]:
+        print j
+        client.messages.create(
+            to="+919670663399", 
+            from_="+12513339847", 
+            body=j
+        )
+        time.sleep(10)
 
-
-callers = {
-    "+14158675309": "Curious George",
-    "+14158675310": "Boots",
-    "+14158675311": "Virgil",
-    "+918982896363": "Sid",
-}
 
 def translation(text,destination,source='auto'):
     lang = {
@@ -124,14 +144,9 @@ def hello_monkey():
         elif ( body.split()[0].lower() == 'place' or body.split()[0].lower() == 'places' ) and body.split()[1].lower() == 'search':
             message = placeSearch(' '.join(body.split()[2:]))
 
-        # from_number = request.values.get('From', None)
-        # if from_number in callers:
-        #     message = callers[from_number] + ", thanks for the message!"
-        # else:
-        #     message = "Monkey, thanks for the message!"
-     
         resp = twilio.twiml.Response()
         resp.message(message)
+        send_text(message)
         print str(resp)
         return str(resp)
     except Exception as e:
