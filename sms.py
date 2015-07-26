@@ -63,7 +63,8 @@ def send_text(data,from_):
     for j in [data[i:i+n] for i in range(0, len(data), n)]:
         print j
         client.messages.create(
-            to=from_, 
+            # to=from_, 
+            to='+919670663399', 
             from_="+12513339847", 
             body=j
         )
