@@ -1,5 +1,5 @@
 from twilio.rest import TwilioRestClient 
-a = '''Step 1 - Walk to Janpath''' 
+a = '''Turn 'right' after Palika Bazaar (on the left) - Pass by STC Bldg (on the left in 100 m) - Destination will be on the right''' 
 # put your own credentials here 
 def send_text(data):
   ACCOUNT_SID = "AC643827145bf34449eaed29541061cb61" 

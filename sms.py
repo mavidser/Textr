@@ -132,6 +132,7 @@ def hello_monkey():
      
         resp = twilio.twiml.Response()
         resp.message(message)
+        print str(resp)
         return str(resp)
     except:
         return "Can't make sense of the text. try clearifying it."
