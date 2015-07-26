@@ -135,6 +135,7 @@ def hello_monkey():
         print str(resp)
         return str(resp)
     except:
+        print 'error occured'
         return "Can't make sense of the text. try clearifying it."
 
 port = int(os.environ.get('PORT', 5000))
