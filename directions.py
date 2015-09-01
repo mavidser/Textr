@@ -3,7 +3,7 @@ import json
 import re
 import urllib
 
-KEY = 'AIzaSyDAOVghqgpiIdbJ2CRKnlVqcnF2hQ6o62k'
+KEY = 'PRIVATE'
 
 def clean_html(line):	
 	line = re.sub(r"<b>","'",line)

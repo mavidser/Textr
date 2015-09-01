@@ -1,0 +1,72 @@
+<html>
+  <head>
+    <title>Textr</title>
+    <style>
+      .form {
+        padding: 50px;
+        background-color: #F0E5F0;
+        max-width: 500px;
+        display: block;
+        margin: 100 auto;
+        margin-bottom: 20px;
+      }
+      button {
+        margin: 50 auto;
+        margin-bottom: 0px;
+        width: 200px;
+        height: 50px;
+        font-size: 20pt;
+        border: none;
+        color: #fff;
+        background-color: #660F66;
+        border-radius: 5px;
+      }
+      textarea {
+        width: 100%;
+        min-height: 200px;
+        font-size: 20pt;
+        vertical-align: text-top;
+      }
+      p {
+        width: 500px;
+        margin: 0 auto;
+        font-size: 20pt;
+        margin-bottom: 50px;
+      }
+    </style>
+  </head>  
+  <body>
+    <div class="form">
+      <textarea id='text'></textarea>
+      <button onclick='sendText(this);'>Send Text</button>
+    </div>
+    <div>
+      <p class='ans'>
+      </p>
+    </div>
+    <script type="text/javascript" src="jquery.js"></script>
+    <script>
+    function nl2br (str, is_xhtml) {   
+      var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';    
+      return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1'+ breakTag +'$2');
+    }
+    function sendText (object) {
+      $.ajax({
+        url: "http://localhost:5000/?From=+918982896363&Body="+$('#text').val()
+      })
+      .done(function( data ) {
+        try {
+          var ans = $($.parseXML(data)).find('Body').text()
+          $('.ans').html(nl2br(ans));}
+        catch(e) {
+          $('.ans').html(data);
+        }
+        console.log(ans);
+      })
+      .error(function( err, msg ) {
+        alert("Error");
+      });
+    }
+    </script>
+  </body>
+</html>

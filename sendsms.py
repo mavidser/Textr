@@ -15,8 +15,8 @@ At the roundabout, take the '2nd' exit and stay on 'Dalhousie Rd'
   ''' 
 # put your own credentials here 
 def send_text(data):
-  ACCOUNT_SID = "AC643827145bf34449eaed29541061cb61" 
-  AUTH_TOKEN = "d95e4350d5c7a08dd74ba98ae3f6b4cf" 
+  ACCOUNT_SID = "PRIVATE" 
+  AUTH_TOKEN = "PRIVATE" 
    
   client = TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN) 
   
@@ -24,8 +24,8 @@ def send_text(data):
   for j in [data[i:i+n] for i in range(0, len(data), n)]:
     print j
     client.messages.create(
-      to="+919670663399", 
-      from_="+12513339847", 
+      to="MY_NUMBER", 
+      from_="TWILIO_NUMBER", 
       body=j
     )
     time.sleep(10)

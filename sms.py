@@ -137,7 +137,7 @@ def hello_monkey():
 
         resp = twilio.twiml.Response()
         resp.message(message)
-        send_text(message,from_)
+        # send_text(message,from_)
         print str(resp)
         return str(resp)
     except Exception as e:

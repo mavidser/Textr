@@ -2,14 +2,14 @@ from twilio.rest import TwilioRestClient
  
 # put your own credentials here 
 def send_text(data):
-  ACCOUNT_SID = "AC643827145bf34449eaed29541061cb61" 
-  AUTH_TOKEN = "d95e4350d5c7a08dd74ba98ae3f6b4cf" 
+  ACCOUNT_SID = "PRIVATE" 
+  AUTH_TOKEN = "PRIVATE" 
    
   client = TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN) 
    
   client.messages.create(
-    to="+918982896363", 
-    from_="+19286123050", 
+    to="MY_NUMBER", 
+    from_="TWILIO_NUMBER", 
     body=data
   )
 
